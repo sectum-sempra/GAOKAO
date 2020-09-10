@@ -46,7 +46,6 @@ class subject:
     score : a score which can show the level of this subject
     total_num : the remaining number of this subject in enrollment
     
-    
     subject belongs to school
     """
 
