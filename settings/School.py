@@ -15,7 +15,7 @@ class school:  # subject belongs to schools
         self.enrolled_student = []
     """
     id : id of schools
-    subjects : subject dict list of the school
+    subjects : subject object list of the school
     score : (can be expanded by some quotas) a score which can show the level of the school
     position : the position id of this school
     res_num : total remaining number of the school
@@ -31,31 +31,23 @@ class school:  # subject belongs to schools
     def enroll(self, student_id):  # enroll a student
         self.enrolled_student.append(student_id)
 
-    def
-
 
 class subject:
-    def __init__(self, id, subject_score, subject_class_id, total_num):
+    def __init__(self, id, employment_score, study_score, subject_class_id, total_num):
         self.id = id
         self.class_id = subject_class_id
-        self.score = subject_score
+        self.employment = employment_score
+        self.study = study_score
         self.res_num = total_num
     """
     id : id of subject (unique)
     class_id : for major class enrollment
-    score : a score which can show the level of this subject
+    employment_score : a score which can show the level of employment
+    study_score : like employment score, can be expanded more
     total_num : the remaining number of this subject in enrollment
     
     subject belongs to school
     """
-
-    def gen_subject_dict(self):  # gen a dict which can describe this subject
-        return {
-            'id' : self.id,
-            'class_id' : self.class_id,
-            'score:' : self.score,
-            'res_num' : self.res_num
-        }
 
     def enroll_a_student(self):
         self.res_num -= 1
