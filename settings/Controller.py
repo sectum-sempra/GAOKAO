@@ -1,4 +1,5 @@
 """
-for global variable
+this file is to create a way to config the whole process of school admitting
 """
-total_people_num = {}  # dict like {position_id : num}
+
+

@@ -4,7 +4,7 @@ student class contains the information of each student and it contains the funct
 student apply some schools
 """
 import numpy as np
-from settings.Controller import total_people_num
+from settings.config import total_people_num
 
 
 class student:
