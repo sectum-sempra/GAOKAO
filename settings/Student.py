@@ -7,6 +7,25 @@ import numpy as np
 from settings.config import total_people_num
 
 
+class archive:
+    """
+    this class if a abstract of the students' archives to simplify the output of throwing archive
+    """
+    def __init__(self, id, rank, throw_dict):
+        self.id = id
+        self.rank = rank
+        self.throw_dict = throw_dict
+        """
+        throw_dict : a dict {school_id:[sub1,sub2...]}
+        """
+
+    def get_dream_school_id(self):  # get a list of dream school id
+        ids = []
+        for sch in self.throw_dict.keys():
+            ids.append(sch)
+        return ids
+
+
 class student:
     def __init__(self, id, score, rank, position, school_feature, subject_feature, school_subject_weight):
         self.id = id
@@ -53,7 +72,7 @@ class student:
     def throw(self):
         """
         a function to describe how a student fill his wanted list
-        :return: a dict like {school_id: [sub_id1,sub_id2,...]}
+        :return: a archive object
         """
         quantile = self.rank / total_people_num[self.position]
         school_quantile = max(int(quantile * len(self.ranked_school_subject_list)), 6)
@@ -65,7 +84,7 @@ class student:
                 if t[0] == school:
                     part_ranked_list.append(t)
             result[school] = part_ranked_list[:5]
-        return result
+        return archive(self.id, self.rank, result)
 
 
 

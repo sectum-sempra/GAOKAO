@@ -9,7 +9,7 @@ import numpy as np
 import random
 
 
-class school_initializer:
+class School_Initializer:
     @staticmethod
     def init_a_subject(idx, class_id, employment_score, study_score, res_num):
         return subject(idx, class_id, employment_score, study_score, res_num)
@@ -46,7 +46,7 @@ class school_initializer:
         return school_list
 
 
-class student_initializer:
+class Student_Initializer:
     @staticmethod
     def init_a_student(idx, score, rank, position, school_feature, subject_feature, school_subject_weight):
         return student(idx, score, rank, position, school_feature, subject_feature, school_subject_weight)

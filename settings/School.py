@@ -30,6 +30,7 @@ class school:  # subject belongs to schools
 
     def enroll(self, student_id):  # enroll a student
         self.enrolled_student.append(student_id)
+        self.res_num -= 1
 
 
 class subject:
