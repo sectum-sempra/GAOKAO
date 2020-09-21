@@ -5,8 +5,10 @@ this file provides a way to initialize the school data and student data
 
 from settings.School import school, subject
 from settings.Student import student
+from settings.config import total_people_num
 import numpy as np
 import random
+from tqdm.notebook import tqdm
 
 
 class School_Initializer:
@@ -32,7 +34,7 @@ class School_Initializer:
         school_list = []
         scores = np.random.normal(2, 0.5, num_schools)
         num_subjects = np.random.randint(1, 11, num_schools)
-        for idx in range(num_schools):
+        for idx in tqdm(range(num_schools)):
             subject_list = []
             sub_ids = random.sample(range(1, 21), num_subjects[idx])
             for sub_idx in range(num_subjects[idx]):
@@ -56,20 +58,22 @@ class Student_Initializer:
         initialize a list of students and a list
         :return: a list of student object
         """
-        students_list = []
+        students_list = [object] * num_students
         scores = list(np.round(np.random.normal(550, 50, num_students)))
         students_info = list(zip(range(num_students), scores))  # gen a (id,score) tuple
         students_info = sorted(students_info, key=lambda s: s[1], reverse=True)
-        for rank, (idx, score) in enumerate(students_info):
-            position = np.random.randint(0, 4)
+        students_position = [0]*total_people_num[0] + [1]*total_people_num[1] + [2]*total_people_num[2] + [3]*total_people_num[3]
+        random.shuffle(students_position)
+        for rank, (idx, score) in tqdm(enumerate(students_info)):
+            position = students_position[rank]
             temp_random = np.random.uniform()
             school_subject_weight = np.array([temp_random, 1-temp_random])
             temp_random = np.random.uniform()
             school_feature = np.array([temp_random, 1-temp_random])
             temp_random = np.random.uniform()
             subject_feature = np.array([temp_random, 1-temp_random])
-            students_list.append(self.init_a_student(idx, score, rank, position, school_feature,
-                                                     subject_feature, school_subject_weight))
+            students_list[rank] = self.init_a_student(idx, score, rank, position, school_feature,
+                                                      subject_feature, school_subject_weight)
         return students_list
 
 

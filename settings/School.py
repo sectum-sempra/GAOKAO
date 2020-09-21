@@ -25,7 +25,7 @@ class school:  # subject belongs to schools
     def get_total_res_num(self):
         res_num = 0
         for s in self.subjects:
-            res_num += s['res_num']
+            res_num += s.res_num
         return res_num
 
     def enroll(self, student_id):  # enroll a student

@@ -4,6 +4,7 @@ this file is to create a way to config the whole process of school admitting
 
 from settings.config import num_schools, num_students
 from settings.Initializer import School_Initializer, Student_Initializer
+from tqdm.notebook import tqdm
 
 school_initializer = School_Initializer()
 student_initializer = Student_Initializer()
@@ -27,10 +28,10 @@ class Controller:
     """
 
     def all_student_throw(self):
-        archive_list = []
-        for s in self.student_list:
+        archive_list = [None] * num_students
+        for idx, s in tqdm(enumerate(self.student_list)):
             s.gen_school_subject_series(self.school_list)
-            archive_list.append(s.throw())
+            archive_list[idx] = s.throw()
         return archive_list
 
     def admitted_to_school(self):
